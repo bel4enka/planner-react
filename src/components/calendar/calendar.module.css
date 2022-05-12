@@ -1,0 +1,31 @@
+@media screen and (min-width: 1240px) {
+  .section_calendar {
+    grid-column: 1/8;
+    align-self: start;
+  }
+}
+@media screen and (max-width: 1240px) {
+
+  .calendar {
+    min-width: 100%;
+  }
+}
+@media screen and (min-width: 1241px) {
+
+  .calendar {
+    min-width: 85%;
+  }
+}
+.calendar {
+  padding: 0 20px;
+  background: inherit;
+  border: none;
+  color: white;
+}
+.title {
+  color: white;
+}
+
+.react-calendar__navigation {
+  background: white;
+}

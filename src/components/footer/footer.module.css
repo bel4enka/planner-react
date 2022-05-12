@@ -1,0 +1,78 @@
+
+
+.menu_bar {
+  background: rgba(239, 245, 248, 0.827983);
+  height: 73px;
+  grid-column: span 10;
+}
+
+@media screen and (min-width: 1240px) {
+  .menu_bar {
+    border-radius: 10px;
+    align-self: end;
+  }
+}
+.menu {
+  list-style-type: none;
+  padding: 15px 0 0 0;
+  margin: 0;
+  display: flex;
+  justify-content: space-around;
+}
+
+@media screen and (min-width: 1240px) {
+  .menu {
+    align-items: center;
+    padding: 0;
+  }
+}
+.menu__link {
+  display: block;
+  width: 20px;
+  height: 20px;
+}
+
+.menu__link:hover {
+  box-shadow: 0 20px 18px rgba(91, 62, 150, 0.4);
+}
+
+.time {
+  background: url("./img/type_time.png") no-repeat;
+  border-radius: 10px;
+  composes: menu__link;
+}
+
+.task {
+  background: url("./img/task.png") no-repeat;
+  composes: menu__link;
+}
+.reminder {
+  background: url("./img/type_reminder.png") no-repeat;
+  composes: menu__link;
+}
+.profile {
+  background: url("./img/type_profile.png") no-repeat;
+  composes: menu__link;
+}
+
+.add {
+  background: #5B3E96 url("./img/type_add.png") no-repeat 50%;
+  box-shadow: 0 20px 30px rgba(91, 62, 150, 0.4);
+  border-radius: 50px;
+  width: 58px;
+  height: 58px;
+  position: relative;
+  top: -45px;
+  composes: menu__link;
+}
+
+@media screen and (min-width: 1240px) {
+  .add {
+    top: -15px;
+  }
+
+  .add:hover {
+    transform: translate(0, -5px);
+    transition: linear .3s;
+  }
+}
