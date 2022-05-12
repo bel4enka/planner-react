@@ -1,15 +1,15 @@
 export type Todo = {
-  name?: string,
-  desc?: string,
-  date?: string,
-  notification?: string,
-  color?: string
+  name: string,
+  desc: string,
+  date: string,
+  notification: string,
+  color: string
 
 }
-export type TodoStore = {
+export type TTodoStore = {
   secondsPassed: number,
   loading: boolean,
-  todos: Todo[],
+  todos: Array<Todo>,
   increaseTimer: () => void
-  addTodo: (item: Todo) => void
+  addTodo: (arg0: Todo) => void
 }

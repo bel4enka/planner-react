@@ -1,12 +1,14 @@
 import React from "react"
-import {makeAutoObservable} from "mobx"
+import {makeAutoObservable, observable} from "mobx"
 import {Todo} from "../type/type";
 
 class TodoStore {
-  secondsPassed = 0
-  loading = false;
-  todos = []
-
+  secondsPassed: number = 0
+  loading: boolean = false;
+  todos = [
+    { name: '01', desc: 'Hello', date: 'false', notification: 'jhbhbhb', color: 'nnbvbgv' },
+    { name: '01', desc: 'Hello', date: 'false', notification: 'jhbhbhb', color: 'nnbvbgv' }
+]
 
   constructor() {
     makeAutoObservable(this, {
@@ -22,11 +24,10 @@ class TodoStore {
     this.loading = !this.loading;
   }
 
-  addTodo = (item:Todo) => {
-    // @ts-ignore
-    this.todos.push({item});
+  addTodo (item:Todo) {
+    this.todos.push(item);
+    console.log(item)
   }
 }
 
-const todoStore = new TodoStore()
-export default todoStore
+export default new TodoStore()

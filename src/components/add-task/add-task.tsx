@@ -2,10 +2,11 @@ import styles from './add-task.module.css'
 import { useFormik } from 'formik';
 import {TodoContext} from '../../store/context'
 import {useContext} from "react";
+import {observer} from "mobx-react-lite";
+import todoStore from '../../store/'
 
-export const AddTask = () => {
-  const  {addTodo} = useContext(TodoContext)
-  const  todos = useContext(TodoContext)
+export const AddTask = observer(() => {
+
   const formik = useFormik({
     initialValues: {
       name: '',
@@ -15,11 +16,11 @@ export const AddTask = () => {
       color: ''
     },
     onSubmit: values => {
-      addTodo(formik.values)
-
+      todoStore.addTodo(formik.values)
+      console.log(todoStore.todos)
     },
   });
-  console.log(todos)
+
   return (
     <>
         <form className="form form__add-task" name="add-task" onSubmit={formik.handleSubmit}>
@@ -74,4 +75,4 @@ export const AddTask = () => {
         </form>
     </>
   )
-}
+})

@@ -11,12 +11,10 @@ const App = () => {
 
   return (
     <div className={styles.page}>
-      <TodoContext.Provider value={todoStore}>
         <Header/>
         <MyCalendar/>
         <TaskList/>
         <Footer/>
-      </TodoContext.Provider>
     </div>
   );
 }

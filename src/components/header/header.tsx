@@ -1,22 +1,17 @@
 import logo from '../../img/logo.svg'
 import styles from './header.module.css'
-import todoStore from "../../store";
-import {useEffect, useContext} from "react";
+import { useContext} from "react";
 import { observer } from "mobx-react-lite"
 import {TodoContext} from '../../store/context'
 
 
-// @ts-ignore
 export const Header = observer(() => {
-  const {secondsPassed, loading, increaseTimer} = useContext(TodoContext)
-
-
-  console.log(secondsPassed, loading)
+  const toDo = useContext(TodoContext)
 
   return (
         <header className={`${styles.section_top} ${styles.center}`}>
             <img className={`${styles.logo} ${styles.center}`} src={logo} alt="logo"/>
-          <button onClick={() => increaseTimer()}>{secondsPassed}</button>
+          <button onClick={() => toDo.increaseTimer()}>{toDo.secondsPassed}</button>
                 <nav className={styles.switch}>
                     <ul className={styles.switch__items}>
                         <li className={styles.switch__item}>
