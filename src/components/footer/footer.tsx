@@ -2,6 +2,8 @@ import styles from './footer.module.css'
 import Modal from "../modal/modal";
 import {AddTask} from "../add-task/add-task";
 import {useState} from "react";
+import todoStore from "../../store";
+
 export const Footer = () => {
   const [isOpen, setIsOpen] = useState(false)
 
@@ -27,9 +29,9 @@ export const Footer = () => {
           <a href="#" className={styles.profile}></a>
         </li>
       </ul>
-      {isOpen &&
+      {todoStore.open || isOpen &&
         <Modal onClose={toggleModal} title={'Create New Tasks'}>
-          <AddTask  />
+          <AddTask onClose={toggleModal} />
         </Modal>
       }
     </footer>

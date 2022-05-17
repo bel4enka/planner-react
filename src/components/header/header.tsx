@@ -11,7 +11,7 @@ export const Header = observer(() => {
   return (
         <header className={`${styles.section_top} ${styles.center}`}>
             <img className={`${styles.logo} ${styles.center}`} src={logo} alt="logo"/>
-          <button onClick={() => toDo.increaseTimer()}>{toDo.secondsPassed}</button>
+          {/*<button onClick={() => toDo.increaseTimer()}>{toDo.secondsPassed}</button>*/}
                 <nav className={styles.switch}>
                     <ul className={styles.switch__items}>
                         <li className={styles.switch__item}>

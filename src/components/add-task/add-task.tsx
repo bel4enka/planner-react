@@ -3,40 +3,41 @@ import { useFormik } from 'formik';
 import {TodoContext} from '../../store/context'
 import {useContext} from "react";
 import {observer} from "mobx-react-lite";
-import todoStore from '../../store/'
+import todoStore from '../../store/index'
+import {toJS} from "mobx";
 
-export const AddTask = observer(() => {
-
+export const AddTask = observer(( props:any) => {
+  const toggleModal = props.onClose
   const formik = useFormik({
     initialValues: {
-      name: '',
-      desc: '',
+      content: '',
+      description: '',
       date: '',
-      notification: '',
+      due_string: '',
       color: ''
     },
     onSubmit: values => {
-      todoStore.addTodo(formik.values)
-      console.log(todoStore.todos)
+      todoStore.addTodoAsync(formik.values)
+      formik.resetForm();
+      toggleModal()
     },
   });
-
   return (
     <>
         <form className="form form__add-task" name="add-task" onSubmit={formik.handleSubmit}>
             <label className="form__label" htmlFor="topic">Topic</label>
-            <input id="name"
-                   name="name"
-                   type="name"
+            <input id="content"
+                   name="content"
+                   type="content"
                    onChange={formik.handleChange}
-                   value={formik.values.name}
+                   value={formik.values.content}
             />
             <label className="form__label" htmlFor="desc">Description</label>
-            <input id="desc"
-                   name="desc"
-                   type="desc"
+            <input id="description"
+                   name="description"
+                   type="description"
                    onChange={formik.handleChange}
-                   value={formik.values.desc}
+                   value={formik.values.description}
             />
             <input type="date"
                    onChange={formik.handleChange}
@@ -46,12 +47,12 @@ export const AddTask = observer(() => {
             />
 
             <label className="form__label"
-                   htmlFor="notification">Notification</label>
+                   htmlFor="due_string">Notification</label>
             <select
               onChange={formik.handleChange}
                     className="form__item form__item_el_notification"
-                    id="notification" name="notification">
-              <option value={formik.values.notification}>this hour</option>
+                    id="notification" name="due_string">
+              <option value={formik.values.due_string}>this hour</option>
               <option
                 onChange={formik.handleChange}
               >10 mins before</option>
