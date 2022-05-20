@@ -1,7 +1,8 @@
 
 .details__header {
-  /* text-decoration-line: line-through;*/
-  margin-left: 50px;
+   /*text-decoration-line: line-through;*/
+  /*margin-left: 50px;*/
+  margin: 0;
 }
 
 .details__header:after {
@@ -45,7 +46,7 @@
   vertical-align: middle;
   margin-right: 14px;
 }
-.date-ellipse:after {
+.date_ellipse:after {
   content: '';
   display: inline-block;
   vertical-align: middle;

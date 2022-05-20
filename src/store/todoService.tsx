@@ -1,4 +1,4 @@
-import {TTask, TTodo} from "../type/type";
+import { TTodo, TTodoForm} from "../type/type";
 
 const webApiUrl:string = "https://api.todoist.com/rest/v1";
 const headers:{[key: string]: string} = {
@@ -34,7 +34,7 @@ export class ToDoService {
     const request = new Request(`${webApiUrl}/tasks/${id}`, options);
     return await fetch(request);
   }
-  postTask = async (task:TTask) => {
+  postTask = async (task: TTodoForm) => {
     const options = {
       method: "POST",
       headers,

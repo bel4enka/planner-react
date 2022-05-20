@@ -1,27 +1,32 @@
 export type TTodo = {
-  content?: string,
-  description?: string,
-  notification?: string,
-  created?: string,
-  color?: string,
-  id?: number,
-  priority?: number,
-  projectId?: number,
-  sectionId?: number,
+  created: string;
+  comment_count: number,
   completed?: boolean,
-  labelsId?: number[],
-  parent_id?: number,
-  url?: string,
-  commentCount?: number,
-  due?: TDue
+  content: string,
+  description: string,
+  due: TDue
+  id: number,
+  order: number,
+  priority: number,
+  project_id: number,
+  section_id: number,
+  parent_id: number,
+  url: string
+}
+
+export type TTodoForm = {
+  content: string,
+  description: string,
+  color: string,
+  data: string
 }
 
 export type TDue = {
-  readonly date?: string,
-  readonly recurring?: boolean,
-  readonly datetime?: string,
-  readonly string?: string,
-  readonly timezone?: string
+  readonly date: string,
+  readonly recurring: boolean,
+  readonly datetime: string,
+  readonly string: string,
+  readonly timezone: string
 }
 export type TTodoStore = {
   secondsPassed: number,
@@ -29,14 +34,6 @@ export type TTodoStore = {
   todos: Array<TTodo>,
   increaseTimer: () => void
   addTodo: (arg0: TTodo) => void
-}
-
-export type TTask = {
-  due_string: string,
-  content: string,
-  description: string,
-  date: string,
-  color: string
 }
 
 export type TProject = {

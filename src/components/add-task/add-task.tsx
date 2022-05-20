@@ -1,10 +1,7 @@
-import styles from './add-task.module.css'
 import { useFormik } from 'formik';
-import {TodoContext} from '../../store/context'
-import {useContext} from "react";
 import {observer} from "mobx-react-lite";
 import todoStore from '../../store/index'
-import {toJS} from "mobx";
+import { Button, Grid, TextField} from "@mui/material";
 
 export const AddTask = observer(( props:any) => {
   const toggleModal = props.onClose
@@ -13,7 +10,6 @@ export const AddTask = observer(( props:any) => {
       content: '',
       description: '',
       date: '',
-      due_string: '',
       color: ''
     },
     onSubmit: values => {
@@ -25,54 +21,72 @@ export const AddTask = observer(( props:any) => {
   return (
     <>
         <form className="form form__add-task" name="add-task" onSubmit={formik.handleSubmit}>
-            <label className="form__label" htmlFor="topic">Topic</label>
-            <input id="content"
+          <Grid
+            container
+            spacing={5}
+                direction="column"
+                justifyContent="flex-start"
+                alignItems="stretch">
+          <Grid item xs={5}>
+              <TextField
+                  fullWidth
+                  label={'Name'}
+                   id="content"
                    name="content"
                    type="content"
                    onChange={formik.handleChange}
                    value={formik.values.content}
+                  variant="standard"
             />
-            <label className="form__label" htmlFor="desc">Description</label>
-            <input id="description"
+          </Grid>
+            <Grid item xs={8}>
+                <TextField
+                   fullWidth
+                   label={'Description'}
+                   id="description"
                    name="description"
                    type="description"
                    onChange={formik.handleChange}
                    value={formik.values.description}
+                   variant="standard"
             />
-            <input type="date"
+            </Grid>
+            <Grid item xs={8}>
+            <TextField
+                  fullWidth
+                  type="date"
                    onChange={formik.handleChange}
                    id="date"
                    name="date"
                    value={formik.values.date}
+                  variant="standard"
             />
+            </Grid>
+            <Grid item xs={8}>
 
-            <label className="form__label"
-                   htmlFor="due_string">Notification</label>
-            <select
-              onChange={formik.handleChange}
-                    className="form__item form__item_el_notification"
-                    id="notification" name="due_string">
-              <option value={formik.values.due_string}>this hour</option>
-              <option
+              <TextField
+                fullWidth
+                type="color"
                 onChange={formik.handleChange}
-              >10 mins before</option>
-              <option
-                onChange={formik.handleChange}
-              >20 mins before</option>
-              <option
-                onChange={formik.handleChange}
-              >30 mins before</option>
-            </select>
-            <label className="form__label" htmlFor="color">Choose color</label>
-            <input
-              value={formik.values.color}
-                   onChange={formik.handleChange}
-                   type="color"
-                   className="form__item form__item_el_color"
-                   id="color" name="color"/>
-            <button type="submit"
-                    className="popup__button popup__button__add-task">Add
-            </button>
+                id="color"
+                name="color"
+                value={formik.values.color}
+                variant="standard"
+              />
+            {/*<label className="form__label" htmlFor="color">Choose color</label>*/}
+            {/*<input*/}
+            {/*  value={formik.values.color}*/}
+            {/*       onChange={formik.handleChange}*/}
+            {/*       type="color"*/}
+            {/*       className="form__item form__item_el_color"*/}
+            {/*       id="color" name="color"/>*/}
+            </Grid>
+              <Grid item xs={8}>
+          <Button variant="contained" type="submit" size="large">
+            Add
+          </Button>
+              </Grid>
+          </Grid>
         </form>
     </>
   )

@@ -155,7 +155,6 @@
   position: relative;
   right: -65px;
   text-decoration: none;
-  cursor: pointer;
   order: 1;
 }
 .tasks__caption_active {
@@ -166,7 +165,6 @@
   font-size: 24px;
   line-height: 28.18px;
   text-decoration: none;
-  cursor: default;
   order: 0;
 }
 .tasks {

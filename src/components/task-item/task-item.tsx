@@ -8,9 +8,13 @@ import {Checkbox, FormControlLabel, FormGroup, IconButton} from "@mui/material";
 import Modal from "../modal/modal";
 import {DetailTask} from "../detail-task/detail-task";
 import {pink, red} from "@mui/material/colors";
+import {TTodo} from "../../type/type";
+import {formatDate, formatHours} from "../utils/utils";
 
+export const TaskItem = observer((props: { item: TTodo}) => {
 
-export const TaskItem:FC<any> = observer(({item}) => {
+  const {item} = props;
+
   const [isOpen, setIsOpen] = useState(false)
   const [disclose, setDisclose] = useState(false)
 
@@ -25,14 +29,7 @@ export const TaskItem:FC<any> = observer(({item}) => {
     todoStore.dellTodoAsync(id)
   }
 
-  const formatDate = (date: string) =>  {
-    const d = new Date(date)
-    return `${d.getFullYear()}.${d.getMonth()+1}.${d.getDate()}`
-  }
-  const formatHours = (date:string) => {
-    const d = new Date(date)
-    return `${d.getHours()}: ${d.getMinutes()}`
-  }
+
   return(
     <>
       <li className={styles.task_list__task} key={item.id}>
@@ -74,8 +71,8 @@ export const TaskItem:FC<any> = observer(({item}) => {
       </li>
 
       {isOpen &&
-        <Modal onClose={toggleModal} title={''}>
-          <DetailTask  />
+        <Modal onClose={toggleModal} title={'Об этой задаче'}>
+          <DetailTask item={item} date={formatDate(item.created)} time={formatHours(item.created)}/>
         </Modal>
       }
     </>

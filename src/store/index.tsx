@@ -1,6 +1,6 @@
 import React from "react"
 import {makeAutoObservable, observable, runInAction} from "mobx"
-import {TProject, TTask, TTodo} from "../type/type";
+import {TProject, TTodo, TTodoForm} from "../type/type";
 import {ToDoService} from "./todoService";
 
 class TodoStore {
@@ -12,7 +12,9 @@ class TodoStore {
   project: TProject[] = [];
   statusProject: string = '';
   statusTask:string = ''
-  responseTask: string[] = []
+  responseTask: string[] = [];
+  showTask: string = 'month';
+  currentDateCalendar: Date = new Date()
 
   constructor() {
     this.toDoService = new ToDoService();
@@ -32,6 +34,9 @@ class TodoStore {
       });
     }
   };
+  onChangeCurrentDateCalendar = (value:Date) => {
+    this.currentDateCalendar = value
+  }
 
   getTaskAsync = async () => {
     try {
@@ -55,7 +60,7 @@ class TodoStore {
     this.loading = !this.loading;
   }
 
-  addTodoAsync  = async (item:TTask) => {
+  addTodoAsync  = async (item: { date: string; color: string; description: string; content: string }) => {
     try {
       const data = await this.toDoService.postTask(item)
       runInAction(() => {
@@ -97,6 +102,10 @@ class TodoStore {
   }
   onClose = (arg:boolean) => {
     this.open = arg
+  }
+
+  showTasks (arg:string) {
+    this.showTask = arg
   }
 }
 
